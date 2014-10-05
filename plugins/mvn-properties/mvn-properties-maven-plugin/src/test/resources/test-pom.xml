@@ -26,14 +26,11 @@
 					</execution>
 				</executions>
 				<configuration>
-					<filePaths>
-						<filePath>test-versions.properties</filePath>
-					</filePaths>
-					<files>
-						<file>test-versions.properties</file>
-					</files>
+					<resourceNames>
+						<resourceName>test-versions.properties</resourceName>
+					</resourceNames>  
 				</configuration>
-				<!-- Any jars with the above properties files -->
+				<!-- Any jars with the above properties-resources -->
 				<dependencies>
 					<dependency>
 						<groupId>${project.groupId}</groupId>

@@ -1,12 +1,10 @@
 package de.dbo.tools.mvn.plugin.properties;
 
-import edu.emory.mathcs.backport.java.util.Collections;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -31,7 +29,7 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
  *         D. Knuth: Programs are meant to be read by humans and only
  *         incidentally for computers to execute
  *
- *
+ 
  *
  * @goal read-resource-properties
  */
@@ -45,36 +43,31 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 	private MavenProject project;
 
 	/**
-	 * The properties files that will be used when reading properties. RS: made
-	 * optional to avoid issue for inherited plug-ins
-	 * 
-	 * @parameter
-	 */
-	private File[] files;
-
-	/**
 	 * Optional paths to properties files to be used.
 	 * 
 	 * @parameter
 	 */
-	private String[] filePaths;
-
+	private String[] resourceNames;
+	
 	public void execute() throws MojoExecutionException {
 
 		// TODO the test-hook. Should be removed. How?
-		if (getPluginContext().containsKey("test_maven_project")) {
-			project = (MavenProject) getPluginContext().get(
-					"test_maven_project");
-			logProject();
+		if (null==project && getPluginContext().containsKey("test_maven_project")) {
+			project = (MavenProject) getPluginContext().get("test_maven_project");
+			logProject(); // only to appear in tests!
 		}
 
-		readPropertyFiles();
-
+		final File[] files = readPropertyFiles();
+		if (0==files.length) {
+			getLog().warn("No resource-files found");
+			return;
+		}
+		
 		Properties projectProperties = new Properties();
 		for (int i = 0; i < files.length; i++) {
 			final File file = files[i];
 			if (null == file) {
-				throw new MojoExecutionException("File is NULL!");
+				throw new MojoExecutionException("File["+"i"+"] is NULL!");
 			}
 			if (!file.exists()) {
 				getLog().warn(
@@ -84,8 +77,8 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 			}
 
 			try {
-				getLog().debug("Loading property file: " + file);
-				FileInputStream stream = new FileInputStream(file);
+				getLog().debug("Loading contents of the property file: " + file);
+				final FileInputStream stream = new FileInputStream(file);
 				projectProperties = project.getProperties();
 				try {
 					projectProperties.load(stream);
@@ -102,15 +95,15 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 		}
 
 		boolean useEnvVariables = false;
-		for (@SuppressWarnings("rawtypes")
-		Enumeration n = projectProperties.propertyNames(); n.hasMoreElements();) {
-			String k = (String) n.nextElement();
-			String p = (String) projectProperties.get(k);
-			if (p.indexOf("${env.") != -1) {
+		for (final Object o: projectProperties.keySet()) {
+			final String key = (String) o;
+			final String value = (String) projectProperties.get(key);
+			if (value.indexOf("${env.") != -1) {
 				useEnvVariables = true;
 				break;
 			}
 		}
+
 		Properties environment = null;
 		if (useEnvVariables) {
 			try {
@@ -120,48 +113,37 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 						"Error getting system envorinment variables: ", e);
 			}
 		}
-		for (@SuppressWarnings("rawtypes")
-		Enumeration n = projectProperties.propertyNames(); n.hasMoreElements();) {
-			String k = (String) n.nextElement();
-			projectProperties.setProperty(k, getPropertyValue(k, projectProperties, environment));
+		
+		for (final Object o: projectProperties.keySet()) {
+			final String key = (String) o;
+			projectProperties.setProperty(key, getPropertyValue(key, projectProperties, environment));
 		}
 		
 		logProjectProperties(projectProperties);
 	}
 
-	// Begin: RS addition
 	/**
 	 * Obtain the file from the local project or the classpath
 	 * 
 	 * @throws MojoExecutionException
 	 */
-	private void readPropertyFiles() throws MojoExecutionException {
-		if (files == null || files.length == 0) {
-			throw new MojoExecutionException(
-					"no files or filePaths defined, one or both must be specified");
+	private File[] readPropertyFiles() throws MojoExecutionException {
+		if (null==resourceNames) {
+			resourceNames = new String[]{};
+			getLog().warn("No resource-names specified");
 		}
 
-		File[] allFiles;
-
-		int offset = 0;
-		if (files != null && files.length != 0) {
-			allFiles = new File[files.length + filePaths.length];
-			System.arraycopy(files, 0, allFiles, 0, files.length);
-			offset = files.length;
-		} else {
-			allFiles = new File[filePaths.length];
-		}
-
-		for (int i = 0; i < filePaths.length; i++) {
-			Location location = getLocation(filePaths[i], project);
+		final File[] allFiles = new File[resourceNames.length];
+		for (int i = 0; i < resourceNames.length; i++) {
+			Location location = getLocation(resourceNames[i], project);
 			if (null == location) {
 				throw new MojoExecutionException("Location is null: filePath=["
-						+ filePaths[i] + "]" + "project=["
+						+ resourceNames[i] + "]" + "project=["
 						+ (null != project ? project.getId() : "NULL") + "]");
 			}
 
 			try {
-				allFiles[offset + i] = location.getFile();
+				allFiles[i] = location.getFile();
 			} catch (IOException e) {
 				throw new MojoExecutionException(
 						"unable to open properties file", e);
@@ -169,21 +151,18 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 		}
 
 		// replace the original array with the merged results
-		files = allFiles;
-		logPropertyFiles();
+		logPropertyFiles(allFiles);
+		return allFiles;
 	}
-
-	// End: RS addition
 
 	/**
 	 * Retrieves a property value, replacing values like ${token} using the
 	 * Properties to look them up. Shamelessly adapted from:
-	 * http://maven.apache.
-	 * org/plugins/maven-war-plugin/xref/org/apache/maven/plugin
+	 * http://maven.apache.org/plugins/maven-war-plugin/xref/org/apache/maven/plugin
 	 * /war/PropertyUtils.html
 	 * 
 	 * It will leave unresolved properties alone, trying for System properties,
-	 * and environment variables and implements reparsing (in the case that the
+	 * and environment variables and implements re-parsing (in the case that the
 	 * value of a property contains a key), and will not loop endlessly on a
 	 * pair like test = ${test}
 	 * 
@@ -298,13 +277,11 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 	}
 	
 	private void logProject() {
-		getLog().debug(
-				"Maven project: ["
-						+ (null != project ? project.getArtifactId() : "NULL")
-						+ "]");
+		getLog().debug("Maven test-project: ["
+			+ (null != project ? project.getArtifactId() : "NULL") + "]");
 	}
 
-	private final void logPropertyFiles() {
+	private final void logPropertyFiles(File[] files) {
 		final StringBuilder sb = new StringBuilder();
 		if (null != files) {
 			for (int i = 0; i < files.length; i++) {
@@ -313,6 +290,6 @@ public final class ReadPropertiesMojo extends AbstractMojo {
 		} else {
 			sb.append("NULL");
 		}
-		getLog().debug(files.length + " property-files:" + sb.toString());
+		getLog().debug("using " + files.length + " property-related files:" + sb.toString());
 	}
 }
