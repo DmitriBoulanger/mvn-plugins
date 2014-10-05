@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.mvn</groupId>
+		<artifactId>mvn-properties</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.dbo.mvn.test</groupId>
+	<artifactId>mvn-properties-test-container</artifactId>
+	<name>Maven Plugins - Properties Test-Container</name>
+	<description>
+Trivial test artifact with properties container (JAR with properties-file as a resource)
+It is only used as a parameter in the usage-test
+	</description>
+
+	<build>
+		<plugins>
+			<!-- There is nothing to run and/or to test! -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,47 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.dbo.mvn.test</groupId>
+	<artifactId>mvn-properties-maven-plugin-test</artifactId>
+	<version>0.0.0-SNAPSHOT</version>
+	
+	<properties>
+	 	<test1>Test value1</test1>
+	 	<test2>Test value1</test2>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>mvn</groupId>
+				<artifactId>mvn-properties-maven-plugin</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>read-resource-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-resource-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filePaths>
+						<filePath>test-versions.properties</filePath>
+					</filePaths>
+					<files>
+						<file>test-versions.properties</file>
+					</files>
+				</configuration>
+				<!-- Any jars with the above properties files -->
+				<dependencies>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						  <artifactId>mvn-properties-test-container</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>
