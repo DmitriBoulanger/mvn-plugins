@@ -1,6 +1,7 @@
 package de.dbo.tools.mvn.plugin.properties.test;
 
 import static de.dbo.tools.utils.print.Print.lines;
+import static de.dbo.tools.utils.print.Print.padLeft;
 
 import de.dbo.tools.mvn.plugin.properties.ReadPropertiesMojo;
 
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.maven.model.Model;
+import org.apache.maven.model.Dependency;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
@@ -102,7 +104,7 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 	
 	private static final StringBuilder printDependencies(final MavenProject mavenProject) {
 		@SuppressWarnings("unchecked")
-		final List<MavenProject> dependencies = (List<MavenProject>) mavenProject.getDependencies();
+		final List<Dependency> dependencies = (List<Dependency>) mavenProject.getDependencies();
 		final StringBuilder sb = new StringBuilder();
 		if (null==dependencies) {
 			sb.append("NULL");
@@ -110,8 +112,8 @@ public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
 		else if (dependencies.isEmpty()) {
 			sb.append("[]");
 		} else {
-			for (final MavenProject dependency:dependencies) {
-				sb.append("\n\t\t -- " + dependency.getArtifact());
+			for (final Dependency dependency:dependencies) {
+				sb.append("\n\t\t -- " + padLeft(dependency.getArtifactId(),30) );
 			}
 		}
 		return sb;
