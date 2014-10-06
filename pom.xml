@@ -2,19 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<parent>
-		<groupId>de.dbo</groupId>
-		<artifactId>root</artifactId>
-		<version>0.0.0-SNAPSHOT</version>
-		<relativePath></relativePath>
-	</parent>
-	
 	<groupId>de.dbo.mvn</groupId>
-	<artifactId>plugins</artifactId>
+	<artifactId>mvn-reactor</artifactId>
+	<version>0.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Plugins</name>
-	<description>mvn-plugins</description>
-    
+	<name>Installer</name>
+	<description>
+Installation of mvn-modules
+	</description>
+	
     <modules>
     	<module>plugins</module>
     </modules>
