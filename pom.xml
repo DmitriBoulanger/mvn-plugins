@@ -26,9 +26,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>de.dbo.mvn</groupId>
-				<artifactId>_dependency-management</artifactId>
-				<version>${project.version}</version>
+				<groupId>de.dbo</groupId>
+				<artifactId>dependency-management</artifactId>
+				<version>0.0.0-SNAPSHOT</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
