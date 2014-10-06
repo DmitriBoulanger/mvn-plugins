@@ -10,7 +10,7 @@
 
 	<groupId>de.dbo.mvn.test</groupId>
 	<artifactId>mvn-properties-test-usage</artifactId>
-	<name>Maven Plugins - Properties Test-Usage</name>
+	<name>MVN Plugins - Properties Test-Usage</name>
 	<description>
 Test artifact to explain the usage of the Properties Plug-in: it reads artifact-jars containing
 properties as resource-files and sets the corresponding maven variables in the current project.

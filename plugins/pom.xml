@@ -11,7 +11,7 @@
   <groupId>de.dbo.mvn</groupId>
   <artifactId>plugins</artifactId>
   <packaging>pom</packaging>
-  <name>Maven Plugins</name>
+  <name>MVN Plugins</name>
   <description>Maven Plug-ins</description>
   
   <modules>

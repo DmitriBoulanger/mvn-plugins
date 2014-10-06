@@ -11,7 +11,7 @@
 
 	<artifactId>mvn-properties</artifactId>
 	<packaging>pom</packaging>
-	<name>Maven Plugins - Properties</name>
+	<name>MVN Plugins - Properties</name>
 	<url>http://stackoverflow.com/questions/1231561/how-to-share-common-properties-among-several-maven-projects</url>
 	<description>
 How to share common properties among several maven projects?

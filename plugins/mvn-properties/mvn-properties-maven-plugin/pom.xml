@@ -10,7 +10,7 @@
 
 	<artifactId>mvn-properties-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<name>Maven Plugins - Properties Plugin</name>
+	<name>MVN Plugins - Properties Plugin</name>
 	<url></url>
 
 	<dependencies>

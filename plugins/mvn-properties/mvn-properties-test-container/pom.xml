@@ -10,7 +10,7 @@
 
 	<groupId>de.dbo.mvn.test</groupId>
 	<artifactId>mvn-properties-test-container</artifactId>
-	<name>Maven Plugins - Properties Test-Container</name>
+	<name>MVN Plugins - Properties Test-Container</name>
 	<description>
 Trivial test artifact with properties container (JAR with properties-file as a resource)
 It is only used as a parameter in the usage-test
