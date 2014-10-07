@@ -20,14 +20,14 @@ import org.apache.maven.project.MavenProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ReadPropertiesMojoTest extends AbstractMojoTestCase {
-	private static final Logger log = LoggerFactory.getLogger(ReadPropertiesMojoTest.class);
+public class SavePropertiesMojoTest extends AbstractMojoTestCase {
+	private static final Logger log = LoggerFactory.getLogger(SavePropertiesMojoTest.class);
 
 	private static final String MAVEN_PLUGIN = "mvn-properties-maven-plugin";
 	private static final String ARTIFACT_ID_TEST = "de.dbo.mvn.test:mvn-properties-maven-plugin-test:jar:0.0.0-SNAPSHOT";
 	private static final String ARTIFACT_POM_TEST =  getBasedir() + "/src/test/resources/test-pom.xml";
 			
-	public ReadPropertiesMojoTest() {
+	public SavePropertiesMojoTest() {
 		log.info("using POM = " + ARTIFACT_POM_TEST);
 	}
 	

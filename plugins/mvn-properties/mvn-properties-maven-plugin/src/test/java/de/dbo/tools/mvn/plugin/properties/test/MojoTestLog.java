@@ -4,8 +4,8 @@ import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class ReadPropertiesMojoTestLog extends SystemStreamLog {
-	private static final Logger log = LoggerFactory.getLogger(ReadPropertiesMojoTestLog.class);
+public final class MojoTestLog extends SystemStreamLog {
+	private static final Logger log = LoggerFactory.getLogger(MojoTestLog.class);
 	
 	@Override
 	public void info(final CharSequence content) {
