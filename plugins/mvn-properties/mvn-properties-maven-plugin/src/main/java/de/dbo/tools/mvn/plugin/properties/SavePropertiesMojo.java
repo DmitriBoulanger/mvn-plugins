@@ -22,7 +22,7 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
 
 /*
  http://stackoverflow.com/questions/1440224/how-can-i-download-maven-artifacts-within-a-plugin
- 
+ http://stackoverflow.com/questions/18128706/maven-antrun-pass-maven-properties-to-ant
  
  */
 
