@@ -19,14 +19,14 @@
 			<artifactId>maven-project</artifactId>
 		</dependency>
 		<dependency>
-      		<groupId>org.apache.maven</groupId>
-      		<artifactId>maven-plugin-api</artifactId>
-    	</dependency>
-    	<dependency>
-      		<groupId>org.apache.maven.plugin-tools</groupId>
-     		 <artifactId>maven-plugin-annotations</artifactId>
-      		<scope>provided</scope>
-    	</dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.shared</groupId>
 			<artifactId>maven-shared-io</artifactId>
@@ -35,19 +35,19 @@
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-utils</artifactId>
 		</dependency>
-		
+
 		<!-- required properties packed as an artifact -->
 		<dependency>
-			<groupId>de.dbo.mvn.test</groupId>
-			<artifactId>mvn-properties-test-container</artifactId>
-			<version>${project.version}</version>
+			<groupId>de.dbo</groupId>
+			<artifactId>versions</artifactId>
+			<version>0.0.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
-			<dependency>
-				<groupId>de.dbo.tools</groupId>
-				<artifactId>print</artifactId>
-				<scope>test</scope>
-			</dependency>
+		<dependency>
+			<groupId>de.dbo.tools</groupId>
+			<artifactId>print</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 </project>

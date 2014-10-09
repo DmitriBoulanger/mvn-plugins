@@ -27,15 +27,15 @@
 				</executions>
 				<configuration>
 					<resourceNames>
-						<resourceName>test-versions.properties</resourceName>
+						<resourceName>versions.properties</resourceName>
 					</resourceNames>  
 				</configuration>
 				<!-- Any jars with the above properties-resources -->
 				<dependencies>
 					<dependency>
-						<groupId>${project.groupId}</groupId>
-						  <artifactId>mvn-properties-test-container</artifactId>
-						<version>${project.version}</version>
+						<groupId>de.dbo</groupId>
+						  <artifactId>versions</artifactId>
+						<version>0.0.0-SNAPSHOT</version>
 					</dependency>
 				</dependencies>
 			</plugin>

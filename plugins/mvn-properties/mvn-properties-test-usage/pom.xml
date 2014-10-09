@@ -37,15 +37,15 @@ If Maven-test is used, the values of the system properties are verified in the J
 				</executions>
 				<configuration>
 					<resourceNames>
-						<resourceName>test-versions.properties</resourceName>	
+						<resourceName>versions.properties</resourceName>	
 					</resourceNames>
 				</configuration>
 				<!-- Any artifacts (JARs) hosting the above properties -->
 				<dependencies>
  				<dependency>
-						<groupId>${project.groupId}</groupId>
-						<artifactId>mvn-properties-test-container</artifactId>
-						<version>${project.version}</version>
+						<groupId>de.dbo</groupId>
+						<artifactId>versions</artifactId>
+						<version>0.0.0-SNAPSHOT</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -63,12 +63,12 @@ If Maven-test is used, the values of the system properties are verified in the J
 							<!-- Required project properties -->
 							<properties>
 								<property>
-									<name>spring-version</name>
-									<value>${spring-version}</value>
+									<name>dbo.version</name>
+									<value>${dbo.version}</value>
 								</property>
 								<property>
-									<name>mysql-version</name>
-									<value>${mysql-version}</value>
+									<name>mysql.version</name>
+									<value>${mysql.version}</value>
 								</property>
 							</properties>
 						</configuration>
@@ -88,8 +88,8 @@ If Maven-test is used, the values of the system properties are verified in the J
 						<configuration>
 							<!-- Display required project properties -->
 							<tasks>
-								<echo>spring-version=${spring-version}</echo>
-								<echo>mysql-version=${mysql-version}</echo>
+								<echo>dbo.version=${dbo.version}</echo>
+								<echo>mysql.version=${mysql.version}</echo>
 							</tasks>
 						</configuration>
 					</execution>

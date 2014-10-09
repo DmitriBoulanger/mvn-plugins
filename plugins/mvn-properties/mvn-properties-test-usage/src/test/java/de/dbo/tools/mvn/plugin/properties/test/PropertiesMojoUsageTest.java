@@ -1,26 +1,24 @@
 package de.dbo.tools.mvn.plugin.properties.test;
 
-import de.dbo.tools.mvn.plugin.properties.test.PropertiesMojoUsage;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * Test only runs if it is started using Maven
  * since the required properties are only set by the properties-maven-plugin
- * 
+ *
  * @author Dmitri Boulanger, Hombach
  *
- * D. Knuth: Programs are meant to be read by humans and 
- *           only incidentally for computers to execute 
+ * D. Knuth: Programs are meant to be read by humans and
+ *           only incidentally for computers to execute
  *
  */
 public class PropertiesMojoUsageTest {
 	private static final Logger log = LoggerFactory.getLogger( PropertiesMojoUsageTest.class);
-	
+
 	@Test
 	public void properties() {
 		final PropertiesMojoUsage propertiesMojoUsage = new  PropertiesMojoUsage();
@@ -30,7 +28,7 @@ public class PropertiesMojoUsageTest {
 			return;
 		}
 		propertiesMojoUsage.logVersionProperties();
-		assertEquals("1.0-resource",System.getProperties().getProperty("spring-version", null));
-		assertEquals("4.0.0-resource",System.getProperties().getProperty("mysql-version", null));
+        assertEquals("0.0.0-SNAPSHOT", System.getProperties().getProperty("dbo.version", null));
+        assertEquals("5.1.6", System.getProperties().getProperty("mysql.version", null));
 	}
 }

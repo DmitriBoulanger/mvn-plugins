@@ -21,7 +21,6 @@ the corresponding maven-variables
 	</description>
 
 	<modules>
-		<module>mvn-properties-test-container</module>
 		<module>mvn-properties-test-usage</module>
 		<module>mvn-properties-maven-plugin</module>
 	</modules>
