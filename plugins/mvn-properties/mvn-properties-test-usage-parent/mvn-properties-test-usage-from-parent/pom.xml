@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.mvn.test</groupId>
+		<artifactId>mvn-properties-test-usage-parent</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>mvn-properties-test-usage-from-parent</artifactId>
+	<name>MVN Plugins - Properties Test-Usage from parent</name>
+	<description>
+Test artifact to explain the usage of the Properties Plug-in: it reads artifact-jars containing
+properties as resource-files and sets the corresponding maven variables in the current project.
+For test purposes, the values are set as system-properties in JVM using properties-maven-plugin
+and the values are displayed with the maven-antrun-plugin as well.
+If Maven-test is used, the values of the system properties are verified in the JUnit-test
+	</description>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+			
+				<!-- Test: properties in plug-in dependencies -->
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>maven-jetty-plugin</artifactId>
+					<dependencies>
+						<dependency>
+							<groupId>hsqldb</groupId>
+							<artifactId>hsqldb</artifactId>
+							<version>${dbo.version}</version>
+							<exclusions>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-log4j12</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+		<plugins>
+		
+			<!-- Test: show maven-properties from the parent as ant-echo -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<!-- Display the test-properties -->
+							<tasks>
+								<echo>dbo.version=${dbo.version}</echo>
+								<echo>mysql.version=${mysql.version}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- Test:  properties in plug-in dependencies -->
+			<!-- MAVEN ERROR 
+			<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>maven-jetty-plugin</artifactId>
+			</plugin>
+			-->
+			
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.tools</groupId>
+			<artifactId>print</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

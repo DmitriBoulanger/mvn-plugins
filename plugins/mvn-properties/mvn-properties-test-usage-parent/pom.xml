@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.dbo.mvn</groupId>
+		<artifactId>mvn-properties</artifactId>
+		<version>0.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.dbo.mvn.test</groupId>
+	<artifactId>mvn-properties-test-usage-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>MVN Plugins - Properties Test-Usage Parent</name>
+	<description>
+
+	</description>
+
+	<build>
+		<plugins>
+			<!-- Properties reader -->
+			<plugin>
+				<groupId>de.dbo.mvn</groupId>
+				<artifactId>mvn-properties-maven-plugin</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>read-resource-properties</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-resource-properties</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<resourceNames>
+						<resourceName>versions.properties</resourceName>
+					</resourceNames>
+				</configuration>
+				<!-- Any artifacts (JARs) hosting the declared above properties -->
+				<dependencies>
+					<dependency>
+						<groupId>de.dbo</groupId>
+						<artifactId>versions</artifactId>
+						<version>0.0.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.dbo.tools</groupId>
+			<artifactId>print</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>mvn-properties-test-usage-from-parent</module>
+	</modules>
+
+</project>

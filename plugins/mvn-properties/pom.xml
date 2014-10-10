@@ -21,14 +21,11 @@ the corresponding maven-variables
 	</description>
 
 	<modules>
-		<module>mvn-properties-test-usage</module>
 		<module>mvn-properties-maven-plugin</module>
+		<module>mvn-properties-test-usage</module>
+		<module>mvn-properties-test-usage-parent</module>
 	</modules>
-
-	<build>
-
-	</build>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
