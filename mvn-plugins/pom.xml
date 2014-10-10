@@ -9,7 +9,7 @@
   </parent>
   
   <groupId>de.dbo.mvn</groupId>
-  <artifactId>plugins</artifactId>
+  <artifactId>mvn-plugins</artifactId>
   <packaging>pom</packaging>
   <name>MVN Plugins</name>
   <description>Maven Plug-ins</description>

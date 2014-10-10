@@ -12,7 +12,7 @@ Installation of mvn-modules
 	</description>
 	
     <modules>
-    	<module>plugins</module>
+    	<module>mvn-plugins</module>
     </modules>
 
 </project>
