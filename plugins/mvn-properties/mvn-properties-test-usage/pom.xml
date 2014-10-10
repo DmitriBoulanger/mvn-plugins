@@ -43,7 +43,7 @@ If Maven-test is used, the values of the system properties are verified in the J
 				<!-- Any artifacts (JARs) hosting the declared above properties -->
 				<dependencies>
  				<dependency>
-						<groupId>de.dbo</groupId>
+						<groupId>de.dbo.root</groupId>
 						<artifactId>versions</artifactId>
 						<version>0.0.0-SNAPSHOT</version>
 					</dependency>

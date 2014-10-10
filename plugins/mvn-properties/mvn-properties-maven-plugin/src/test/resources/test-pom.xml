@@ -33,7 +33,7 @@
 				<!-- Any jars with the above properties-resources -->
 				<dependencies>
 					<dependency>
-						<groupId>de.dbo</groupId>
+						<groupId>de.dbo.root</groupId>
 						  <artifactId>versions</artifactId>
 						<version>0.0.0-SNAPSHOT</version>
 					</dependency>
