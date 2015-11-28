@@ -17,18 +17,18 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class PropertiesMojoUsageTest {
-	private static final Logger log = LoggerFactory.getLogger( PropertiesMojoUsageTest.class);
+    private static final Logger log = LoggerFactory.getLogger( PropertiesMojoUsageTest.class);
 
-	@Test
-	public void properties() {
-		final PropertiesMojoUsage propertiesMojoUsage = new  PropertiesMojoUsage();
-		propertiesMojoUsage.logMavenProperties();
-		if ( null == System.getProperties().getProperty("maven.home", null)) {
-			log.warn("No assertions (no actual test possible). Try to run the Maven-test ...");
-			return;
-		}
-		propertiesMojoUsage.logVersionProperties();
-        assertEquals("0.0.0-SNAPSHOT", System.getProperties().getProperty("dbo.version", null));
-        assertEquals("5.1.6", System.getProperties().getProperty("mysql.version", null));
+    @Test
+    public void properties() {
+	final PropertiesMojoUsage propertiesMojoUsage = new PropertiesMojoUsage();
+	propertiesMojoUsage.logMavenProperties();
+	if ( null == System.getProperties().getProperty("maven.home", null)) {
+	    log.warn("No assertions (no actual test possible). Try to run the Maven-test ...");
+	    return;
 	}
+	propertiesMojoUsage.logVersionProperties();
+	assertEquals("0.0.0-SNAPSHOT", System.getProperties().getProperty("dbo.version", null));
+	assertEquals("5.1.6", System.getProperties().getProperty("mysql.version", null));
+    }
 }

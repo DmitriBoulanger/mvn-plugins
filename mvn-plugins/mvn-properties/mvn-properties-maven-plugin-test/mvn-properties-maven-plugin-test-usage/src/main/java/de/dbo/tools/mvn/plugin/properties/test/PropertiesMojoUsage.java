@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Required properties are only set by the maven plug-in
+ * Values of the properties are only set by the maven plug-in
  *
  * @author Dmitri Boulanger, Hombach
  *
