@@ -5,11 +5,11 @@
 
 	<parent>
 		<groupId>de.dbo.mvn</groupId>
-		<artifactId>mvn-plugins</artifactId>
+		<artifactId>mvn-properties</artifactId>
 		<version>0.0.0-SNAPSHOT</version>
 	</parent>
 	
-	<name>MVN Plugins - Properties</name>
+	<name>MVN Plugins - Properties Test</name>
 	<url>http://stackoverflow.com/questions/1231561/how-to-share-common-properties-among-several-maven-projects</url>
 	<description>
 How to share common properties among several maven projects?
@@ -18,12 +18,12 @@ The plug-in reads the corresponding JAR-files, finds properties-resources and in
 the corresponding maven-variables
 	</description>
 	
-	<artifactId>mvn-properties</artifactId>
+	<artifactId>mvn-properties-maven-plugin-test</artifactId>
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>mvn-properties-maven-plugin</module>
-		<module>mvn-properties-maven-plugin-test</module>
+		<module>mvn-properties-maven-plugin-test-usage</module>
+		<module>mvn-properties-maven-plugin-test-usage-parent</module>
 	</modules>
 	
 	<dependencies>
