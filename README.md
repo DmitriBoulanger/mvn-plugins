@@ -1,7 +1,8 @@
-mvn-plugins Repository
-======================
+## mvn-plugins Repository ##
+
     
-    eclipse name: _mvn-plugins repository
+    > eclipse name:    _mvn-plugins repository
+    > eclipse version: Mars Java 1.8
 
 
 
