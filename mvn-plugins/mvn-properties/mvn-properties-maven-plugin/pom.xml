@@ -45,11 +45,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
-			<groupId>de.dbo.tools</groupId>
-			<artifactId>print</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 </project>

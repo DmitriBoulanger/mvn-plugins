@@ -23,7 +23,6 @@ the corresponding maven-variables
 	
 	<modules>
 		<module>mvn-properties-maven-plugin</module>
-		<module>mvn-properties-maven-plugin-test</module>
 	</modules>
 	
 	<dependencies>
